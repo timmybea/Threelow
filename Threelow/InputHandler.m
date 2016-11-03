@@ -13,6 +13,9 @@
 -(void)printMenu {
     NSLog(@"What would you like do next?");
     NSLog(@"roll - Roll unheld dice");
+    NSLog(@"hold - Hold a dice");
+    NSLog(@"unhold - Unhold a dice");
+    NSLog(@"reset - Unhold all dice");
     NSLog(@"quit - Exit Application");
 }
 

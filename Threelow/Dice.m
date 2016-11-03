@@ -13,11 +13,17 @@
 
 @interface Dice ()
 
-
 @end
 
-
 @implementation Dice
+
+-(id)init {
+    self = [super init];
+    if(self) {
+        _held = NO;
+    }
+    return self;
+}
 
 -(void)rollDice {
     int lowerBound = 1;

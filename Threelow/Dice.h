@@ -11,6 +11,8 @@
 @interface Dice : NSObject
 
 @property (nonatomic) int value;
+@property (nonatomic, getter=isHeld) BOOL held;
+
 -(void)rollDice;
 
 @end

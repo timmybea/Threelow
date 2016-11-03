@@ -8,14 +8,14 @@
 //        ⚀ ⚁ ⚂ ⚃ ⚄ ⚅
 
 #import <Foundation/Foundation.h>
-#import "UnholdManager.h"
+#import "GameController.h"
 #import "InputHandler.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
         InputHandler *inputHandler = [[InputHandler alloc] init];
-        UnholdManager *unholdManager = [[UnholdManager alloc] init];
+        GameController *gameController = [[GameController alloc] init];
         NSString *command;
         BOOL gameOn = YES;
         
@@ -25,15 +25,25 @@ int main(int argc, const char * argv[]) {
             
             if([command isEqualToString:@"roll"]) {
                 NSLog(@"The values are: ");
-                [unholdManager rollAll];
+                [gameController rollUnheldDice];
             } else if ([command isEqualToString:@"quit"]) {
                 NSLog(@"GAME OVER");
                 gameOn = NO;
+            } else if ([command isEqualToString:@"hold"]) {
+                NSLog(@"Which dice would you like to hold? (1-5)");
+                command = [inputHandler returnUserString];
+                [gameController holdDice:command.integerValue];
+            } else if ([command isEqualToString:@"unhold"]) {
+                NSLog(@"Which dice would you like to unhold? (1-5)");
+                command = [inputHandler returnUserString];
+                [gameController unholdDice:command.integerValue];
+            } else if ([command isEqualToString:@"reset"]) {
+                [gameController resetDice];
             } else {
                 NSLog(@"Invalid command. Please try again.");
             }
+            [gameController score];
         }
-        
     }
     return 0;
 }
