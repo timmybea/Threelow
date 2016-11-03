@@ -11,6 +11,7 @@
 @interface GameController ()
 
 @property (nonatomic) NSMutableArray *diceValues;
+@property (nonatomic) NSDictionary *diceImages;
 
 @end
 
@@ -20,6 +21,7 @@
 -(id)init {
     self = [super init];
     if(self) {
+        _diceImages = @{@"1": @"[I]", @"2": @"[II]", @"3": @"[III]", @"4": @"[IV]", @"5": @"[V]", @"6": @"[VI]"};
         _diceValues = [[NSMutableArray alloc]init];
         for(int i = 0; i < 5; i++) {
             Dice *dice = [[Dice alloc] init];
@@ -42,9 +44,9 @@
     int i = 1;
     for (Dice *myDice in self.diceValues) {
         if(myDice.held == YES) {
-            NSLog(@"Dice %d is: [%d]", i, myDice.value);
+            NSLog(@"Dice %d is: * %@ *", i, [self.diceImages objectForKey:[NSString stringWithFormat:@"%d", myDice.value]]);
         } else {
-            NSLog(@"Dice %d is: %d", i, myDice.value);
+            NSLog(@"Dice %d is: %@", i, [self.diceImages objectForKey:[NSString stringWithFormat:@"%d", myDice.value]]);
         }
         i++;
     }
